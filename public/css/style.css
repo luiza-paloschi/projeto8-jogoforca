@@ -145,3 +145,12 @@ body{
     border-radius: 3px;
     justify-content: center;
 }
+.win{
+    color: green;
+}
+.loose{
+    color:red;
+}
+button:hover{
+    cursor:pointer;
+}
