@@ -1,11 +1,18 @@
-export default function Jogo(){
-    return(
+export default function Jogo(props){
+  
+  
+  
+  return(
         <div className="jogo">
           <div className="imagem">
-            <img src="/assets/forca0.png" alt=""/>
+            <img src={`/assets/forca${props.erros}.png`} alt=""/>
           </div>
           <div className="palavra">
-            <button class="choose">Escolher Palavra</button>
+            <button 
+            className="choose"
+            disabled={props.startGame}
+            onClick={props.function}
+            >Escolher Palavra</button>
             <ul className="word">
                 <li>_</li>
                 <li>_</li>

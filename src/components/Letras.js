@@ -1,11 +1,15 @@
-export default function Letras(){
+export default function Letras(props){
+    const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    
+    
     return(
         <div className="letras">
-          <button class="letter habilitado">a</button>
-          <button class="letter desabilitado">a</button>
-          <button class="letter">a</button>
-          <button class="letter">a</button>
-          <button class="letter">a</button>
+            {alfabeto.map((letra)=>  
+            <button 
+            disabled={props.button ? true : false}
+            onClick={props.function}
+            className={`letter ${props.button ? "desabilitado" : "habilitado"}`}>{letra.toUpperCase()}</button>)}
+          
         </div>
     );
 }
