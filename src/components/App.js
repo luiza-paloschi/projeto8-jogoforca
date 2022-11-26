@@ -10,60 +10,79 @@ function App() {
 const [startGame, setStartGame] = useState(false);
 const [allDisabled, setAllDisabled] = useState(true);
 const [erros, setErros] = useState(0);
-const [chosenWord, setChosenWord] =useState([])
-const [arrayClicked, setArrayClicked] = useState([])
-const [lost, setLost] = useState(false)
-const [won, setWon] = useState(false)
- console.log(arrayClicked)
+const [chosenWord, setChosenWord] =useState([]);
+const [arrayClicked, setArrayClicked] = useState([]);
+const [lost, setLost] = useState(false);
+const [won, setWon] = useState(false);
+const [input, setInput] = useState("");
+
 
 function restartGame(){
-  setErros(0)
-  setChosenWord([])
-  setArrayClicked([])
-  setLost(false)
-  setWon(false)
-  chooseWord()
+  setErros(0);
+  setChosenWord([]);
+  setArrayClicked([]);
+  setLost(false);
+  setWon(false);
+  chooseWord();
 }
 
 function chooseWord(){
-  setStartGame(true)
-  setAllDisabled(false)
-  let random = palavras[Math.floor(Math.random()*palavras.length)]
-  let arrayWord = Array.from(random)
-  setChosenWord(arrayWord)
+  setStartGame(true);
+  setAllDisabled(false);
+  let random = palavras[Math.floor(Math.random()*palavras.length)];
+  let arrayWord = Array.from(random);
+  setChosenWord(arrayWord);
 }
 
 function clickLetter(letra){
-  let uniqueLetters = [...new Set(chosenWord)]
+  let uniqueLetters = [...new Set(chosenWord)];
   
-  const novoArrayClicked = [...arrayClicked, letra]
-  setArrayClicked(novoArrayClicked)
+  const novoArrayClicked = [...arrayClicked, letra];
+  setArrayClicked(novoArrayClicked);
 
-  const correct = novoArrayClicked.filter(letter => uniqueLetters.includes(letter))
+  const correct = novoArrayClicked.filter(letter => uniqueLetters.includes(letter));
   if(correct.length === uniqueLetters.length){
-    setWon(true)
-    endGame()
+    win();
   }
   if (!chosenWord.includes(letra)){
-    let error = erros+1
-    setErros(error)
+    let error = erros+1;
+    setErros(error);
     if(erros === 5){
-        setLost(true)
-        endGame()
+        loose()
     }
   }
 }
 
-function endGame(){
-  setStartGame(false)
-  setAllDisabled(true)
+function win(){
+  setWon(true);
+  endGame();
 }
+
+function loose(){
+  setLost(true);
+  endGame();
+}
+
+function endGame(){
+  setStartGame(false);
+  setAllDisabled(true);
+}
+
+function chute(valorInput){
+  const toString = chosenWord.join("");
+  if (valorInput === toString){
+      win();
+  } else {
+    loose();
+  }
+  setInput("");
+} 
 
   return (
     <div className="conteudo">
-        <Jogo function={restartGame} startGame={startGame} erros={erros} chosenWord={chosenWord} clicado={arrayClicked} lost={lost} won={won}/>
-        <Letras button={allDisabled} function={clickLetter} clicado={arrayClicked}/>
-        <Chute startGame={startGame}/>
+        <Jogo funcao={restartGame} startGame={startGame} erros={erros} chosenWord={chosenWord} clicado={arrayClicked} lost={lost} won={won}/>
+        <Letras button={allDisabled} funcao={clickLetter} clicado={arrayClicked}/>
+        <Chute startGame={startGame} input={setInput} varInput ={input} funcao={chute}/>
       </div>
   );
 }

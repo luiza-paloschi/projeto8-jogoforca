@@ -11,10 +11,10 @@ export default function Jogo(props){
             <button 
             className="choose"
             disabled={props.startGame}
-            onClick={props.function}
+            onClick={props.funcao}
             >Escolher Palavra</button>
             <ul className={`word ${props.lost ? "loose" : ""} ${props.won ? "win" : ""}`}>
-                {props.chosenWord.map((letra)=> <li>{props.lost? letra : (props.clicado.includes(letra) ? letra : "_")}</li>)}
+                {props.chosenWord.map((letra)=> <li>{props.lost || props.won? letra : (props.clicado.includes(letra) ? letra : "_")}</li>)}
             </ul>
           </div>
         </div>
