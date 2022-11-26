@@ -6,6 +6,7 @@ export default function Letras(props){
         <div className="letras">
             {alfabeto.map((letra)=>  
             <button 
+            data-test="letter"
             disabled={props.button ? true : (props.clicado.includes(letra) ? true : false)}
             onClick={()=>props.funcao(letra)}
             className={`letter ${props.button ? "desabilitado" : (props.clicado.includes(letra) ? "desabilitado" : "habilitado")}`}>{letra.toUpperCase()}</button>)}
