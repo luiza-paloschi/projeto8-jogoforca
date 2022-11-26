@@ -69,8 +69,9 @@ function endGame(){
 }
 
 function chute(valorInput){
-  const toString = chosenWord.join("");
-  if (valorInput === toString){
+  const newArray = [...chosenWord]
+  const stringArray = newArray.join("");
+  if (valorInput === stringArray){
       win();
   } else {
     loose();
