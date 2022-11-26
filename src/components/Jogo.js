@@ -5,7 +5,7 @@ export default function Jogo(props){
   return(
         <div className="jogo">
           <div className="imagem">
-            <img data-test ="game-image" src={`/assets/forca${props.erros}.png`} alt=""/>
+            <img data-test ="game-image" src={props.lost?  `/assets/forca6.png` :`/assets/forca${props.erros}.png`} alt=""/>
           </div>
           <div className="palavra">
             <button

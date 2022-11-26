@@ -3,7 +3,8 @@ export default function Chute(props){
   return(
         <div className="chute">
           <p>Já sei a palavra!</p>
-          <input type="text" 
+          <input type="text"
+          disabled={!props.startGame} 
           data-test="guess-input"
           className="guess" 
           value={props.varInput}
