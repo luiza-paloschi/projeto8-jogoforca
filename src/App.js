@@ -1,7 +1,7 @@
-import Jogo from "./Jogo"
-import Letras from "./Letras"
-import Chute from "./Chute"
-import palavras from "/home/luiza/Desktop/projects/projeto8-jogoforca/src/palavras"
+import Jogo from "./components/Jogo"
+import Letras from "./components/Letras"
+import Chute from "./components/Chute"
+import palavras from "./palavras"
 import {useState} from "react"
 
 
