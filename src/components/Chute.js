@@ -4,15 +4,15 @@ export default function Chute(props){
         <div className="chute">
           <p>Já sei a palavra!</p>
           <input type="text"
-          disabled={!props.startGame} 
+          disabled={!props.startGame}
           data-test="guess-input"
-          className="guess" 
+          className="guess"
           value={props.varInput}
           onChange={(event) => props.input(event.target.value)}/>
-          <button 
+          <button
           data-test="guess-button"
           disabled={!props.startGame}
-          onClick={()=>props.funcao(props.varInput)}
+          onClick={()=>props.funcao(props.varInput.toLowerCase())}
           className="fazerChute">Chutar</button>
         </div>
     );

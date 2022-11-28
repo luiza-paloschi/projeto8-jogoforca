@@ -1,8 +1,8 @@
-import Jogo from "./components/Jogo"
-import Letras from "./components/Letras"
-import Chute from "./components/Chute"
-import palavras from "./palavras"
-import {useState} from "react"
+import Jogo from "./components/Jogo";
+import Letras from "./components/Letras";
+import Chute from "./components/Chute";
+import palavras from "./palavras";
+import {useState} from "react";
 
 
 
@@ -29,26 +29,24 @@ function restartGame(){
 function chooseWord(){
   setStartGame(true);
   setAllDisabled(false);
-  let random = palavras[Math.floor(Math.random()*palavras.length)];
-  let arrayWord = Array.from(random);
+  const random = palavras[Math.floor(Math.random()*palavras.length)];
+  const arrayWord = Array.from(random);
   setChosenWord(arrayWord);
 }
 
 function clickLetter(letra){
-  let uniqueLetters = [...new Set(chosenWord)];
-  
+  const uniqueLetters = [...new Set(chosenWord)];
   const novoArrayClicked = [...arrayClicked, letra];
   setArrayClicked(novoArrayClicked);
-
   const correct = novoArrayClicked.filter(letter => uniqueLetters.includes(letter));
   if(correct.length === uniqueLetters.length){
     win();
   }
   if (!chosenWord.includes(letra)){
-    let error = erros+1;
+    const error = erros+1;
     setErros(error);
     if(erros === 5){
-        loose()
+        loose();
     }
   }
 }
@@ -69,7 +67,7 @@ function endGame(){
 }
 
 function chute(valorInput){
-  const newArray = [...chosenWord]
+  const newArray = [...chosenWord];
   const stringArray = newArray.join("");
   if (valorInput === stringArray){
       win();
@@ -77,11 +75,11 @@ function chute(valorInput){
     loose();
   }
   setInput("");
-} 
+}
 
   return (
     <div className="conteudo">
-        <Jogo funcao={restartGame} startGame={startGame} erros={erros} chosenWord={chosenWord} clicado={arrayClicked} lost={lost} won={won}/>
+        <Jogo funcao={restartGame} funcao2={chooseWord} startGame={startGame} erros={erros} chosenWord={chosenWord} clicado={arrayClicked} lost={lost} won={won}/>
         <Letras button={allDisabled} funcao={clickLetter} clicado={arrayClicked}/>
         <Chute startGame={startGame} input={setInput} varInput ={input} funcao={chute}/>
       </div>

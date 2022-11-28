@@ -1,7 +1,4 @@
 export default function Jogo(props){
-  
-  
-  
   return(
         <div className="jogo">
           <div className="imagem">
@@ -9,12 +6,12 @@ export default function Jogo(props){
           </div>
           <div className="palavra">
             <button
-            data-test="choose-word" 
+            data-test="choose-word"
             className="choose"
-            disabled={props.startGame}
-            onClick={props.funcao}
+            disabled= {false}
+            onClick={props.startGame? props.funcao2 : props.funcao}
             >Escolher Palavra</button>
-            <ul 
+            <ul
             data-test="word"
             data-answer={props.chosenWord.join("")}
             className={`word ${props.lost ? "loose" : ""} ${props.won ? "win" : ""}`}>
